@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">剧院票务管理系统</string>
+    <string name="menu_add">增加</string>
+    <string name="menu_change">修改</string>
+</resources>
