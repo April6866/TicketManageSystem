@@ -13,15 +13,26 @@
         android:layout_width="wrap_content"
         android:layout_height="20sp"
         android:text="电影名称"/>
-
-    <Button
-        android:id="@+id/btn_changeMovie"
+    <TextView
+        android:id="@+id/tvc"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="修改"
+        android:layout_height="20sp"
+        android:layout_marginLeft="110dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="280dp"
-        android:textSize="12sp"/>
+        android:layout_toEndOf="@+id/tva"
+        android:text="电影评分:"
+        android:layout_marginRight="3dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="10.00"
+        android:layout_marginTop="5dp"
+        android:textColor="#F0E15D"
+        android:layout_toEndOf="@+id/tvc"/>
+
+
     <TextView
         android:id="@+id/tvd"
         android:layout_width="wrap_content"

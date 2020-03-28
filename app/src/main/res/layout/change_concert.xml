@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/change"
+    android:layout_gravity="center_vertical"
+    android:gravity="center_vertical">
+<EditText
+    android:id="@+id/changeConcert"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/text_bg_style"
+    android:textCursorDrawable="@drawable/cursor_style"
+    android:hint="放映厅名称："/>
+    <EditText
+        android:id="@+id/changeTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/text_bg_style"
+        android:textCursorDrawable="@drawable/cursor_style"
+        android:layout_marginTop="5dp"
+        android:hint="放映时间："/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="确认修改"
+        android:id="@+id/confirm"/>
+</LinearLayout>

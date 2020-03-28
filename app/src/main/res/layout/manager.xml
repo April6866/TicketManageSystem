@@ -13,11 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="添加剧目"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_change"
-        android:text="修改剧目"/>
+
 <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/mana_rv"
     android:layout_width="match_parent"

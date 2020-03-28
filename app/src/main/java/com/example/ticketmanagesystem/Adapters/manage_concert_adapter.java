@@ -1,22 +1,37 @@
 package com.example.ticketmanagesystem.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.ticketmanagesystem.R;
+import com.example.ticketmanagesystem.changeConcertActivity;
+import com.example.ticketmanagesystem.data.Concert;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
 
 public class manage_concert_adapter extends RecyclerView.Adapter<manage_concert_adapter.ViewHolder>
 implements View.OnClickListener,View.OnLongClickListener{
     private Context mContext;
     private OnItemClickListener mOnItemClickListener;
-
+    private List<Concert> list;
     public manage_concert_adapter(Context mContext) {
         this.mContext = mContext;
+    }
+
+    public List<Concert> getList() {
+        return list;
+    }
+
+    public void setList(List<Concert> list) {
+        this.list = list;
     }
 
     @NonNull
@@ -30,7 +45,20 @@ implements View.OnClickListener,View.OnLongClickListener{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+
+
+        holder.tv.setText(list.get(position).getConcertName());
+        holder.tv2.setText(list.get(position).getShowTime());
+        holder.btn_changeConcert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(mContext, changeConcertActivity.class);
+                intent.putExtra("id",list.get(position).get_ID());
+                intent.putExtra("concertName",list.get(position).getConcertName());
+                mContext.startActivity(intent);
+            }
+        });
         holder.itemView.setTag(position);
         holder.itemView.setOnClickListener(this);
         holder.itemView.setOnLongClickListener(this);
@@ -38,7 +66,7 @@ implements View.OnClickListener,View.OnLongClickListener{
 
     @Override
     public int getItemCount() {
-        return 10;
+        return list.size();
     }
 
     @Override
@@ -57,6 +85,20 @@ implements View.OnClickListener,View.OnLongClickListener{
     }
 
     public void removeData(int position) {
+        list.remove(position);
+        notifyItemRemoved(position);
+    }
+    //添加数据
+    public void addData(int position,Concert concert){
+        list.add(position,concert);
+        notifyItemInserted(position);
+    }
+
+    //修改数据
+    public void changeData(int position,Concert concert){
+        list.remove(position);
+        list.add(position,concert);
+        notifyItemChanged(position);
     }
 
     //自定义点击事件
@@ -75,8 +117,14 @@ implements View.OnClickListener,View.OnLongClickListener{
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView tv;
+        TextView tv2;
+        Button btn_changeConcert;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            tv=itemView.findViewById(R.id.tv);
+            tv2=itemView.findViewById(R.id.tv2);
+            btn_changeConcert=itemView.findViewById(R.id.btn_changeConcert);
         }
     }
 }

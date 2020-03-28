@@ -4,18 +4,34 @@ import android.database.Cursor;
 
 import com.example.ticketmanagesystem.MyApplication;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Movie {
+    private int _ID;
     private String movieName;
 
     private String author;
-
+    private  List<Concert> concertList = new ArrayList<>();
     public int getImgId() {
         return imgId;
     }
 
+    public int get_ID() {
+        return _ID;
+    }
 
+    public void set_ID(int _ID) {
+        this._ID = _ID;
+    }
+
+    public List<Concert> getConcertList() {
+        return concertList;
+    }
+
+    public void setConcertList(List<Concert> concertList) {
+        this.concertList = concertList;
+    }
 
     private int imgId;
 

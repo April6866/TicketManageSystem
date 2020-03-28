@@ -1,14 +1,17 @@
 package com.example.ticketmanagesystem.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ticketmanagesystem.DataHelper;
 import com.example.ticketmanagesystem.R;
+import com.example.ticketmanagesystem.changeMovieActivity;
 import com.example.ticketmanagesystem.data.Movie;
 import com.example.ticketmanagesystem.data.play;
 
@@ -22,12 +25,11 @@ public class manager_play_adapter extends RecyclerView.Adapter<manager_play_adap
     private Context mContext;
     private OnItemClickListener mOnItemClickListener;
     private View view;
-    DataHelper dataHelper;
+
     private List<Movie> list;
     public manager_play_adapter(Context mContext) {
         this.mContext = mContext;
-        dataHelper =new DataHelper(mContext);
-        list= dataHelper.queryAllMovieData();
+
     }
 
     @NonNull
@@ -45,16 +47,33 @@ public class manager_play_adapter extends RecyclerView.Adapter<manager_play_adap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder,final int position) {
         list.get(position);
         holder.tva.setText(list.get(position).getMovieName());
         holder.tvd.setText(list.get(position).getAuthor());
         holder.im.setImageResource(list.get(position).getImgId());
         holder.itemView.setTag(position);
+        holder.btn_changeMovie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(mContext, changeMovieActivity.class);
+                intent.putExtra("id",list.get(position).get_ID());
+                intent.putExtra("movieName",list.get(position).getMovieName());
+
+                mContext.startActivity(intent);
+            }
+        });
         holder.itemView.setOnClickListener( this);
         holder.itemView.setOnLongClickListener(this);
     }
 
+    public List<Movie> getList() {
+        return list;
+    }
+
+    public void setList(List<Movie> list) {
+        this.list = list;
+    }
 
     @Override
     public int getItemCount() {
@@ -69,7 +88,20 @@ public class manager_play_adapter extends RecyclerView.Adapter<manager_play_adap
     }
    //需要实现删除逻辑
     public void removeData(int position) {
+       list.remove(position);
+       notifyItemRemoved(position);
+    }
+    //实现添加
+    public void addData(int position,Movie movie){
+        list.add(position,movie);
+        notifyItemInserted(position);
+    }
 
+    //实现修改
+    public void changeData(int position,Movie movie){
+        list.remove(position);
+        list.add(position, movie);
+        notifyItemChanged(position);
     }
 
     @Override
@@ -84,12 +116,14 @@ public class manager_play_adapter extends RecyclerView.Adapter<manager_play_adap
         TextView tva;
         TextView tvd;
         ImageView im;
+        Button btn_changeMovie;
         public ViewHolder(@NonNull View view) {
 
             super(view);
             tva=itemView.findViewById(R.id.tva);
             tvd=itemView.findViewById(R.id.tvd);
             im=itemView.findViewById(R.id.iv);
+            btn_changeMovie=itemView.findViewById(R.id.btn_changeMovie);
         }
     }
 

@@ -11,14 +11,11 @@
         android:text="点击按钮增添修改演出厅，长按删除"/>
     <Button
         android:id="@+id/addCon"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="添加演出厅"/>
-    <Button
-        android:id="@+id/changeCon"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="修改演出厅"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

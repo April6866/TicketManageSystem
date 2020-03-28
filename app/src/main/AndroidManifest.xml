@@ -10,6 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
 
         android:theme="@style/AppTheme">
+        <activity android:name=".changeConcertActivity"></activity>
+        <activity android:name=".changeMovieActivity"></activity>
         <activity android:name=".SeatcustomAcvitity"></activity>
         <activity android:name=".ManageConcertActivity"></activity>
         <activity android:name=".customConcertActivity"></activity>

@@ -21,12 +21,11 @@ implements View.OnClickListener{
     private Context mContext;
     private OnItemClickListener mOnItemClickListener;
     private View view;
-    DataHelper dataHelper;
+
     private List<Movie> list;
     public custom_play_adapter(Context mContext) {
         this.mContext = mContext;
-       dataHelper =new DataHelper(mContext);
-       list= dataHelper.queryAllMovieData();
+
     }
 
     public custom_play_adapter(List<Movie> list,Context mContext) {
@@ -39,7 +38,7 @@ implements View.OnClickListener{
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.mana_item, parent, false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.custom_item, parent, false);
        custom_play_adapter.ViewHolder viewHolder = new custom_play_adapter.ViewHolder(view);
 
         return viewHolder;
